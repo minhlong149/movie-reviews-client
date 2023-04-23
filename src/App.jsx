@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
+
+import AddReview from "./components/AddReview.jsx";
+import Login from "./components/Login.jsx";
+import Movie from "./components/Movie.jsx";
+import MoviesList from "./components/MoviesList.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -39,6 +44,14 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+
+      <Routes>
+        <Route path={"/"} element={<MoviesList />} />
+        <Route path={"movies"} element={<MoviesList />} />
+        <Route path={"movies/:id"} element={<Movie />} />
+        <Route path={"movies/:id/review"} element={<AddReview />} />
+        <Route path={"login"} element={<Login />} />
+      </Routes>
     </div>
   );
 }
