@@ -1,0 +1,23 @@
+{
+  "name": "movie-reviews-client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.3.6",
+    "bootstrap": "^5.2.3",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.7.4",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0-beta.0",
+    "vite": "^4.3.0"
+  }
+}
