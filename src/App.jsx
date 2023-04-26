@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg" className="px-5 py-3">
         <Navbar.Brand as={Link} to="/">
           Movie Reviews
         </Navbar.Brand>
