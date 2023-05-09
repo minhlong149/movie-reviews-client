@@ -48,7 +48,7 @@ function App() {
       <Routes>
         <Route path={"/"} element={<MoviesList />} />
         <Route path={"movies"} element={<MoviesList />} />
-        <Route path={"movies/:id"} element={<Movie />} />
+        <Route path={"movies/:id"} element={<Movie user={user} />} />
         <Route path={"movies/:id/review"} element={<AddReview />} />
         <Route path={"login"} element={<Login />} />
       </Routes>
