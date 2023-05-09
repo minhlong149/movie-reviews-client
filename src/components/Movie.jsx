@@ -17,7 +17,6 @@ const Movie = ({ user }) => {
     try {
       const response = await MovieDataService.get(movieId);
       setMovie(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -27,20 +26,44 @@ const Movie = ({ user }) => {
     getMovie(movieId);
   }, []);
 
+  useEffect(() => {
+    console.log("Get movie:", movie);
+  }, [movie]);
+
   return (
     <Container className="my-5">
       <Row>
-        <Col md="5">
+        <Col md="auto">
           <Image src={`${movie.poster}/100px250`} fluid />
         </Col>
-        <Col md="7">
-          <Card>
-            <Card.Header>{movie.title}</Card.Header>
+
+        <Col>
+          <Card className="mb-3">
+            <Card.Header as="h5">{movie.title}</Card.Header>
             <Card.Body>
               <Card.Text>{movie.plot}</Card.Text>
               {user && <Link to={`/movies/${id}/review`}>Add Review</Link>}
             </Card.Body>
           </Card>
+
+          <h2>Reviews</h2>
+
+          {movie.reviews.map((review, index) => (
+            <Card key={index} className="my-3">
+              <Card.Body>
+                <Card.Title>{review.name}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  {new Date(review.date).toLocaleDateString("en-US", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </Card.Subtitle>
+                <Card.Text>{review.review}</Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
         </Col>
       </Row>
     </Container>
