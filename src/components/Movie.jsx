@@ -38,6 +38,21 @@ const Movie = ({ user }) => {
     console.log("Get movie:", movie);
   }, [movie]);
 
+  const deleteReview = async (reviewId, index) => {
+   try {
+     await MovieDataService.deleteReview(
+       reviewId,
+       user.id
+     );
+     setMovie((prevState) => {
+       prevState.reviews.splice(index, 1);
+       return { ...prevState };
+     });
+   } catch (error) {
+     console.log(error);
+   }
+  };
+
   return (
     <Container className="my-5">
       <Row>
@@ -76,10 +91,19 @@ const Movie = ({ user }) => {
 
                 {user?.id === review.user_id && (
                   <Stack direction="horizontal" gap={2}>
-                    <Card.Link as={Link} to={`/movies/${movieId}/review`}>
+                    <Card.Link
+                      as={Link}
+                      to={`/movies/${movieId}/review`}
+                      state={review}
+                    >
                       Edit
                     </Card.Link>
-                    <Button variant="link">Delete</Button>
+                    <Button
+                      variant="link"
+                      onClick={() => deleteReview(review._id, index)}
+                    >
+                      Delete
+                    </Button>
                   </Stack>
                 )}
               </Card.Body>

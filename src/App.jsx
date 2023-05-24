@@ -43,11 +43,7 @@ function App() {
             )}
           </Nav>
 
-          {user !== null && (
-            <Navbar.Text>
-              Signed in as {user.id}
-            </Navbar.Text>
-          )}
+          {user !== null && <Navbar.Text>Signed in as {user.id}</Navbar.Text>}
         </Navbar.Collapse>
       </Navbar>
 
@@ -55,7 +51,7 @@ function App() {
         <Route path={"/"} element={<MoviesList />} />
         <Route path={"movies"} element={<MoviesList />} />
         <Route path={"movies/:id"} element={<Movie user={user} />} />
-        <Route path={"movies/:id/review"} element={<AddReview />} />
+        <Route path={"movies/:id/review"} element={<AddReview user={user} />} />
         <Route path={"login"} element={<Login login={login} />} />
       </Routes>
     </div>
