@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Container, Card, Col, Image, Row } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  Col,
+  Image,
+  Row,
+  Button,
+  Stack,
+} from "react-bootstrap";
 import MovieDataService from "../services/movies";
 
 const Movie = ({ user }) => {
@@ -42,7 +50,11 @@ const Movie = ({ user }) => {
             <Card.Header as="h5">{movie.title}</Card.Header>
             <Card.Body>
               <Card.Text>{movie.plot}</Card.Text>
-              {user && <Link to={`/movies/${id}/review`}>Add Review</Link>}
+              {user && (
+                <Button as={Link} to={`/movies/${movieId}/review`}>
+                  Add Review
+                </Button>
+              )}
             </Card.Body>
           </Card>
 
@@ -61,6 +73,15 @@ const Movie = ({ user }) => {
                   })}
                 </Card.Subtitle>
                 <Card.Text>{review.review}</Card.Text>
+
+                {user?.id === review.user_id && (
+                  <Stack direction="horizontal" gap={2}>
+                    <Card.Link as={Link} to={`/movies/${movieId}/review`}>
+                      Edit
+                    </Card.Link>
+                    <Button variant="link">Delete</Button>
+                  </Stack>
+                )}
               </Card.Body>
             </Card>
           ))}

@@ -33,7 +33,7 @@ function App() {
               Movies
             </Nav.Link>
             {user === null ? (
-              <Nav.Link as={Link} to="/login" onClick={login}>
+              <Nav.Link as={Link} to="/login">
                 Login
               </Nav.Link>
             ) : (
@@ -42,6 +42,12 @@ function App() {
               </Nav.Link>
             )}
           </Nav>
+
+          {user !== null && (
+            <Navbar.Text>
+              Signed in as {user.id}
+            </Navbar.Text>
+          )}
         </Navbar.Collapse>
       </Navbar>
 
@@ -50,7 +56,7 @@ function App() {
         <Route path={"movies"} element={<MoviesList />} />
         <Route path={"movies/:id"} element={<Movie user={user} />} />
         <Route path={"movies/:id/review"} element={<AddReview />} />
-        <Route path={"login"} element={<Login />} />
+        <Route path={"login"} element={<Login login={login} />} />
       </Routes>
     </div>
   );
